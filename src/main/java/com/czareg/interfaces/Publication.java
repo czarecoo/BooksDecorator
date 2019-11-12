@@ -1,4 +1,4 @@
-package com.czareg;
+package com.czareg.interfaces;
 
 public interface Publication {
 	String getAuthor();

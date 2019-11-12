@@ -1,4 +1,6 @@
-package com.czareg;
+package com.czareg.decorators;
+
+import com.czareg.interfaces.Publication;
 
 public class BookDecorator implements Publication {
 	Publication publication;

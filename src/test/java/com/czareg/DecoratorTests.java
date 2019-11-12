@@ -3,6 +3,9 @@ package com.czareg;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import com.czareg.interfaces.Publication;
+import com.czareg.model.Book;
+
 public class DecoratorTests {
 	@Test
 	public void BooksToStringMethodShouldReturnProperString() {

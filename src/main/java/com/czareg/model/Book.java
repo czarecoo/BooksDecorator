@@ -1,4 +1,6 @@
-package com.czareg;
+package com.czareg.model;
+
+import com.czareg.interfaces.Publication;
 
 public class Book implements Publication {
 	private String author;
