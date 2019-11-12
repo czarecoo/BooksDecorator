@@ -20,7 +20,7 @@ import com.czareg.interfaces.Publication;
  * <li>1 autograph no matter other decorations</li>
  * </ol>
  */
-public class ExerciseRulesTests extends BookTests {
+public class ExerciseRulesTests extends BookTestsBase {
 	@Test
 	public void bookCanOnlyHave1Cover() {
 		final Publication book = createTestBook();
@@ -55,7 +55,6 @@ public class ExerciseRulesTests extends BookTests {
 	public void bookCanOnlyHave1Autograph() {
 		final Publication book = createTestBook();
 		final BookWithAutograph bookWithAutograph = new BookWithAutograph(book, autograph);
-		String otherAutograph = "To Czareg for being the greatest.";
 
 		Assertions.assertThrows(BookDecoratorException.class, () -> {
 			new BookWithAutograph(bookWithAutograph, otherAutograph);

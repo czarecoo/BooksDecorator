@@ -3,8 +3,9 @@ package com.czareg;
 import com.czareg.interfaces.Publication;
 import com.czareg.model.Book;
 
-public class BookTests {
+public class BookTestsBase {
 	static String autograph = "To my dearest, Alice";
+	static String otherAutograph = "To Czareg for being the greatest.";
 
 	protected Book createTestBook() {
 		return new Book("Adam Mickiewicz", "Pan Tadeusz", 340);
