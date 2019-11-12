@@ -3,16 +3,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.czareg</groupId>
-	<artifactId>Books</artifactId>
+	<artifactId>booksdecorator</artifactId>
 	<version>1.0</version>
-	<name>PropertiesManager</name>
+	<name>BooksDecorator</name>
 	<description>This app shows usage of decorator pattern.</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.release>8</maven.compiler.release>
-		<mainClassName.property>Main</mainClassName.property>
 	</properties>
 
 	<dependencies>
@@ -33,11 +32,6 @@
 			<artifactId>junit-jupiter-engine</artifactId>
 			<version>5.4.2</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.5</version>
 		</dependency>
 	</dependencies>
 
