@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import com.czareg.decorators.BookWithAutograph;
 import com.czareg.decorators.BookWithCover;
+import com.czareg.decorators.BookWithNormalWrapper;
 import com.czareg.decorators.BookWithSoftCover;
 import com.czareg.decorators.BookWithWrapper;
 import com.czareg.exceptions.BookDecoratorException;
@@ -15,8 +16,7 @@ import com.czareg.interfaces.Publication;
  * <ol>
  * <li>1 cover</li>
  * <li>1 wrapper</li>
- * <li>1 wrapper and only if it has cover</li> Note: Class BookWithWrapper only
- * takes BookWithCover in its constructor so this rule does not need test.
+ * <li>1 wrapper and only if it has cover</li>
  * <li>1 autograph no matter other decorations</li>
  * </ol>
  */
@@ -35,10 +35,19 @@ public class ExerciseRulesTests extends BookTests {
 	public void bookCanOnlyHave1Wrapper() {
 		final Publication book = createTestBook();
 		final BookWithCover bookWithCover = new BookWithSoftCover(book);
-		final BookWithWrapper bookWithWrapper = new BookWithWrapper(bookWithCover);
+		final BookWithWrapper bookWithWrapper = new BookWithNormalWrapper(bookWithCover);
 
 		Assertions.assertThrows(BookDecoratorException.class, () -> {
-			new BookWithWrapper(bookWithWrapper);
+			new BookWithNormalWrapper(bookWithWrapper);
+		});
+	}
+
+	@Test
+	public void bookHasToHaveCoverToBeWrapped() {
+		final Publication book = createTestBook();
+
+		Assertions.assertThrows(BookDecoratorException.class, () -> {
+			new BookWithNormalWrapper(book);
 		});
 	}
 
@@ -46,7 +55,7 @@ public class ExerciseRulesTests extends BookTests {
 	public void bookCanOnlyHave1Autograph() {
 		final Publication book = createTestBook();
 		final BookWithAutograph bookWithAutograph = new BookWithAutograph(book, autograph);
-		String otherAutograph = "To Cezary for being the greatest.";
+		String otherAutograph = "To Czareg for being the greatest.";
 
 		Assertions.assertThrows(BookDecoratorException.class, () -> {
 			new BookWithAutograph(bookWithAutograph, otherAutograph);

@@ -7,7 +7,7 @@ import com.czareg.decorators.BookWithAutograph;
 import com.czareg.decorators.BookWithCover;
 import com.czareg.decorators.BookWithHardCover;
 import com.czareg.decorators.BookWithSoftCover;
-import com.czareg.decorators.BookWithWrapper;
+import com.czareg.decorators.BookWithNormalWrapper;
 import com.czareg.interfaces.Publication;
 
 public class DecoratorTests extends BookTests {
@@ -47,7 +47,7 @@ public class DecoratorTests extends BookTests {
 	public void WrappedBookOfBookWithCoverToStringMethodShouldReturnProperString() {
 		Publication book = createTestBook();
 		BookWithCover bookWithCover = new BookWithSoftCover(book);
-		BookWithWrapper bookWithWrapper = new BookWithWrapper(bookWithCover);
+		BookWithNormalWrapper bookWithWrapper = new BookWithNormalWrapper(bookWithCover);
 
 		String result = bookWithWrapper.toString();
 
