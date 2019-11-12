@@ -7,6 +7,7 @@ import com.czareg.decorators.BookWithAutograph;
 import com.czareg.decorators.BookWithCover;
 import com.czareg.decorators.BookWithSoftCover;
 import com.czareg.decorators.BookWithWrapper;
+import com.czareg.exceptions.BookDecoratorException;
 import com.czareg.interfaces.Publication;
 
 /**
@@ -25,7 +26,7 @@ public class ExerciseRulesTests extends BookTests {
 		final Publication book = createTestBook();
 		final BookWithCover bookWithCover = new BookWithSoftCover(book);
 
-		Assertions.assertThrows(Exception.class, () -> {
+		Assertions.assertThrows(BookDecoratorException.class, () -> {
 			new BookWithSoftCover(bookWithCover);
 		});
 	}
@@ -36,7 +37,7 @@ public class ExerciseRulesTests extends BookTests {
 		final BookWithCover bookWithCover = new BookWithSoftCover(book);
 		final BookWithWrapper bookWithWrapper = new BookWithWrapper(bookWithCover);
 
-		Assertions.assertThrows(Exception.class, () -> {
+		Assertions.assertThrows(BookDecoratorException.class, () -> {
 			new BookWithWrapper(bookWithWrapper);
 		});
 	}
@@ -47,7 +48,7 @@ public class ExerciseRulesTests extends BookTests {
 		final BookWithAutograph bookWithAutograph = new BookWithAutograph(book, autograph);
 		String otherAutograph = "To Cezary for being the greatest.";
 
-		Assertions.assertThrows(Exception.class, () -> {
+		Assertions.assertThrows(BookDecoratorException.class, () -> {
 			new BookWithAutograph(bookWithAutograph, otherAutograph);
 		});
 	}
