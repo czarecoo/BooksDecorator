@@ -2,6 +2,7 @@ package com.czareg.decorators;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.czareg.interfaces.Publication;
 import com.czareg.validator.BookDecorationValidator;
@@ -20,6 +21,7 @@ public class BookDecorationBuilder {
 	private List<String> decorations;
 
 	public BookDecorationBuilder(Publication book) {
+		Objects.requireNonNull(book, "Null book in this builder make no sense");
 		this.publication = book;
 		bookDecorationValidator = new BookDecorationValidator(new OnlyOneWrapperRule());
 		bookDecorationValidator.addRule(new HasToHaveCoverRule());
@@ -29,6 +31,7 @@ public class BookDecorationBuilder {
 	}
 
 	public BookDecorationBuilder withAutograph(String autograph) {
+		Objects.requireNonNull(autograph, "Null autograph make no sense");
 		publication = new BookWithAutograph(publication, autograph);
 		decorations.add(AUTOGRAPH);
 		return this;

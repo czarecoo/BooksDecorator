@@ -28,6 +28,16 @@ public class ExerciseRulesTests extends BookTestsBase {
 	}
 
 	@Test
+	public void bookCanOnlyHave1CoverSameCover() {
+		final Publication book = createTestBook();
+		BookDecorationBuilder builder = new BookDecorationBuilder(book);
+
+		Assertions.assertThrows(BookDecoratorException.class, () -> {
+			builder.withSoftCover().withSoftCover().build();
+		});
+	}
+
+	@Test
 	public void bookCanOnlyHave1Wrapper() {
 		final Publication book = createTestBook();
 		BookDecorationBuilder builder = new BookDecorationBuilder(book);
@@ -58,12 +68,32 @@ public class ExerciseRulesTests extends BookTestsBase {
 	}
 
 	@Test
+	public void bookCanOnlyHave1AutographEvenIfThereAreOtherDecoratorsBetween() {
+		final Publication book = createTestBook();
+		BookDecorationBuilder builder = new BookDecorationBuilder(book);
+
+		Assertions.assertThrows(BookDecoratorException.class, () -> {
+			builder.withAutograph(autograph).withSoftCover().withAutograph(otherAutograph).build();
+		});
+	}
+
+	@Test
 	public void bookWithCoverAndAutographShouldStillThrowExceptionWhenTryingToAddAnotherCover() {
 		final Publication book = createTestBook();
 		BookDecorationBuilder builder = new BookDecorationBuilder(book);
 
 		Assertions.assertThrows(BookDecoratorException.class, () -> {
 			builder.withSoftCover().withAutograph(autograph).withHardCover().build();
+		});
+	}
+
+	@Test
+	public void bookWithCoverAndNormalWrapperShouldStillThrowExceptionWhenTryingToAddAnotherCover() {
+		final Publication book = createTestBook();
+		BookDecorationBuilder builder = new BookDecorationBuilder(book);
+
+		Assertions.assertThrows(BookDecoratorException.class, () -> {
+			builder.withSoftCover().withNormalWrapper().withHardCover().build();
 		});
 	}
 }
