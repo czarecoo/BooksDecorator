@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import com.czareg.decorators.BookWithAutograph;
 import com.czareg.decorators.BookWithCover;
+import com.czareg.decorators.BookWithHardCover;
 import com.czareg.decorators.BookWithNormalWrapper;
 import com.czareg.decorators.BookWithSoftCover;
 import com.czareg.decorators.BookWithWrapper;
@@ -35,10 +36,10 @@ public class ExerciseRulesTests extends BookTestsBase {
 	public void bookCanOnlyHave1Wrapper() {
 		final Publication book = createTestBook();
 		final BookWithCover bookWithCover = new BookWithSoftCover(book);
-		final BookWithWrapper bookWithWrapper = new BookWithNormalWrapper(bookWithCover);
+		final BookWithWrapper bookWithCoverAndWrapper = new BookWithNormalWrapper(bookWithCover);
 
 		Assertions.assertThrows(BookDecoratorException.class, () -> {
-			new BookWithNormalWrapper(bookWithWrapper);
+			new BookWithNormalWrapper(bookWithCoverAndWrapper);
 		});
 	}
 
@@ -58,6 +59,17 @@ public class ExerciseRulesTests extends BookTestsBase {
 
 		Assertions.assertThrows(BookDecoratorException.class, () -> {
 			new BookWithAutograph(bookWithAutograph, otherAutograph);
+		});
+	}
+
+	@Test
+	public void bookWithCoverAndAutographShouldStillThrowExceptionWhenTryingToAddAnotherCover() {
+		final Publication book = createTestBook();
+		final BookWithCover bookWithCover = new BookWithHardCover(book);
+		final BookWithAutograph bookWithCoverAndAutograph = new BookWithAutograph(bookWithCover, autograph);
+
+		Assertions.assertThrows(BookDecoratorException.class, () -> {
+			new BookWithSoftCover(bookWithCoverAndAutograph);
 		});
 	}
 }
