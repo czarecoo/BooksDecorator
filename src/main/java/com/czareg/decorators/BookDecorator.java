@@ -2,10 +2,10 @@ package com.czareg.decorators;
 
 import com.czareg.interfaces.Publication;
 
-public class BookDecorator implements Publication {
+class BookDecorator implements Publication {
 	Publication publication;
 
-	public BookDecorator(Publication publication) {
+	BookDecorator(Publication publication) {
 		this.publication = publication;
 	}
 

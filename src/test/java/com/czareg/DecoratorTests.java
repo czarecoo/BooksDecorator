@@ -3,12 +3,7 @@ package com.czareg;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.czareg.decorators.BookWithAutograph;
-import com.czareg.decorators.BookWithCover;
-import com.czareg.decorators.BookWithHardCover;
-import com.czareg.decorators.BookWithNormalWrapper;
-import com.czareg.decorators.BookWithSoftCover;
-import com.czareg.decorators.BookWithWrapper;
+import com.czareg.decorators.BookDecorationBuilder;
 import com.czareg.interfaces.Publication;
 
 public class DecoratorTests extends BookTestsBase {
@@ -25,9 +20,9 @@ public class DecoratorTests extends BookTestsBase {
 	@Test
 	public void BooksWithHardCoverToStringMethodShouldReturnProperString() {
 		Publication book = createTestBook();
-		BookWithHardCover bookWithHardCover = new BookWithHardCover(book);
+		BookDecorationBuilder builder = new BookDecorationBuilder(book);
 
-		String result = bookWithHardCover.toString();
+		String result = builder.withHardCover().build().toString();
 
 		String expected = createToStringTemplateForHardCoveredBook(book);
 		Assertions.assertEquals(expected, result, "ToString does not match expected string for book with hard cover");
@@ -36,9 +31,9 @@ public class DecoratorTests extends BookTestsBase {
 	@Test
 	public void BooksWithSoftCoverToStringMethodShouldReturnProperString() {
 		Publication book = createTestBook();
-		BookWithSoftCover bookWithSoftCover = new BookWithSoftCover(book);
+		BookDecorationBuilder builder = new BookDecorationBuilder(book);
 
-		String result = bookWithSoftCover.toString();
+		String result = builder.withSoftCover().build().toString();
 
 		String expected = createToStringTemplateForSoftCoveredBook(book);
 		Assertions.assertEquals(expected, result, "ToString does not match expected string for book with soft cover");
@@ -47,10 +42,9 @@ public class DecoratorTests extends BookTestsBase {
 	@Test
 	public void WrappedBookOfBookWithCoverToStringMethodShouldReturnProperString() {
 		Publication book = createTestBook();
-		BookWithCover bookWithCover = new BookWithSoftCover(book);
-		BookWithWrapper bookWithWrapper = new BookWithNormalWrapper(bookWithCover);
+		BookDecorationBuilder builder = new BookDecorationBuilder(book);
 
-		String result = bookWithWrapper.toString();
+		String result = builder.withSoftCover().withNormalWrapper().build().toString();
 
 		String expected = createToStringTemplateForSoftCoveredWrappedBook(book);
 		Assertions.assertEquals(expected, result,
@@ -60,9 +54,9 @@ public class DecoratorTests extends BookTestsBase {
 	@Test
 	public void BookWithAutographToStringMethodShouldReturnProperString() {
 		Publication book = createTestBook();
-		BookWithAutograph bookWithWrapper = new BookWithAutograph(book, autograph);
+		BookDecorationBuilder builder = new BookDecorationBuilder(book);
 
-		String result = bookWithWrapper.toString();
+		String result = builder.withAutograph(autograph).build().toString();
 
 		String expected = createToStringTemplateForAutographedBook(book);
 		Assertions.assertEquals(expected, result,

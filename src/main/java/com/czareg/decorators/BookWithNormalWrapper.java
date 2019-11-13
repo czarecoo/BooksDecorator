@@ -2,8 +2,8 @@ package com.czareg.decorators;
 
 import com.czareg.interfaces.Publication;
 
-public class BookWithNormalWrapper extends BookWithWrapper {
-	public BookWithNormalWrapper(Publication publication) {
+class BookWithNormalWrapper extends BookWithWrapper {
+	BookWithNormalWrapper(Publication publication) {
 		super(publication);
 	}
 
