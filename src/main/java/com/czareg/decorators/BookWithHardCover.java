@@ -2,8 +2,8 @@ package com.czareg.decorators;
 
 import com.czareg.interfaces.Publication;
 
-public class BookWithHardCover extends BookWithCover {
-	public BookWithHardCover(Publication publication) {
+class BookWithHardCover extends BookWithCover {
+	BookWithHardCover(Publication publication) {
 		super(publication);
 	}
 

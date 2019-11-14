@@ -1,7 +1,7 @@
 package com.czareg.validator;
 
-import com.czareg.interfaces.Publication;
+import java.util.List;
 
 public interface Rule {
-	void isValid(Publication publication);
+	void isValid(List<String> decorations);
 }

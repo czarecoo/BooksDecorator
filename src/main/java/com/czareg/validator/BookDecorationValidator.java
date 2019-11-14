@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.czareg.interfaces.Publication;
-
 public class BookDecorationValidator {
 	List<Rule> rules;
 
@@ -13,7 +11,11 @@ public class BookDecorationValidator {
 		rules = new ArrayList<>(Arrays.asList(args));
 	}
 
-	public void validate(Publication publication) {
-		rules.forEach(rule -> rule.isValid(publication));
+	public void addRule(Rule rule) {
+		rules.add(rule);
+	}
+
+	public void validate(List<String> decorations) {
+		rules.forEach(rule -> rule.isValid(decorations));
 	}
 }
